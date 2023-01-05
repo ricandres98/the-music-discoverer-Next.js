@@ -1,0 +1,68 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+.artist-item {
+    width: $album-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    .artist-avatar {
+        width: $album-size;
+        height: $album-size;
+        border-radius: 50%;
+        background-color: $white;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .artist-name {
+        max-height: 65px;
+        display: inline-block;
+        padding: 5px 5px 5px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-align: center;
+        overflow: hidden;
+    }
+}
+
+@media  screen and (min-width: 600px) {
+    $album-size: 130px;
+
+   .artist-item {
+       width: $album-size;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+
+       .artist-avatar {
+           width: $album-size;
+           height: $album-size;
+           border-radius: 50%;
+           overflow: hidden;
+
+           img {
+               width: 100%;
+               height: 100%;
+               object-fit: contain;
+           }
+       }
+
+       .artist-name {
+           max-height: 50px;
+           display: inline-block;
+           padding: 5px 5px 5px;
+           font-size: 1.8rem;
+           font-weight: 700;
+           text-align: center;
+           overflow: hidden;
+       }
+   }
+}

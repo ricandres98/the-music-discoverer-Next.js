@@ -1,0 +1,2 @@
+- Implementar una sombra al header cuando el scroll es diferente de 0
+- Aplicar display flex en el header para alinear la barra de busqueda con el botón (<)

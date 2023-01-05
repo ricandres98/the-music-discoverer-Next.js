@@ -1,0 +1,78 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.track-item {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    background-color: $gray-3;
+    border-radius: 0 5px 5px 0;
+    $box-height: 60px;
+    cursor: pointer;
+
+    .track-image {
+        width: $box-height;
+        height: $box-height;
+        border-radius: 2px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .track-info {
+        padding: 6px 12px;
+        max-width: calc(100% - 60px);
+
+        .track-title {
+            display: block;
+            max-height: 20px;
+            margin-bottom: 4px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: $primary-color-3;
+            overflow: hidden;
+        }
+        
+        .track-artist {
+            display: block;
+            max-height: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            overflow: hidden;
+        }
+    }
+}
+
+@media  screen and (min-width: 600px) {
+    $album-size: 130px;
+
+   .track-item {
+       max-width: 490px;
+       $box-height: 76px;
+
+       .track-image {
+           width: $box-height;
+           height: $box-height;
+       }
+
+       .track-info {
+           padding: 15px 20px;
+           max-width: calc(100% - 76px);
+
+           .track-title {
+               max-height: 20px;
+               margin-bottom: 4px;
+               font-size: 1.8rem;
+           }
+           
+           .track-artist {
+               max-height: 22px;
+               font-size: 1.6rem;
+           }
+       }
+   }  
+}
