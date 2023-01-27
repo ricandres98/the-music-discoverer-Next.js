@@ -20,7 +20,6 @@ export default function Home() {
         </div>
         <Image src={backgroundNotes} alt="music notes" />
       </section>
-      <Link href="/search/query">Hello prueba</Link>
     </>
   );
 }

@@ -1,26 +1,31 @@
-import playIcon from 'assets/icons/Play.svg';
-import pauseIcon from 'assets/icons/pause.svg';
-import previousIcon from 'assets/icons/Previous.svg';
-import nextIcon from 'assets/icons/Next.svg';
-import loopIcon from 'assets/icons/Loop.svg';
-import shuffleIcon from 'assets/icons/Shuffle.svg';
 import corchea from 'assets/icons/corchea.svg'
 import Image from 'next/image';
 import Header from 'containers/Header';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext, useRef} from 'react';
 import { useRouter } from 'next/router';
 import useApiInstance from 'hooks/useApiInstance';
+import PlayButton from 'components/PlayButton';
+import PreviousTrackButton from 'components/PreviousTrackButton';
+import LoopButton from 'components/LoopButton';
+import NextTrackButton from 'components/NextTrackButton';
+import ShuffleButton from 'components/ShuffleButton';
+import AppContext from 'context/AppContext';
 import styles from 'styles/Player.module.scss';
+import ProgressBar from 'components/ProgressBar';
 
 const Player = () => {
+  const { state } = useContext(AppContext);
+
+  const [superPlaying, setSuperPlaying] = useState(false)
   const [track, setTrack] = useState({
-    images: corchea
+    images: corchea,
   });
   const router = useRouter();
-  console.log(router);
+  const audioElement = useRef();
 
   useEffect(() => {
     const id = router.query.track;
+    
     async function callApi() {
       const api = useApiInstance();
       const { data } = await api('tracks/', {
@@ -30,12 +35,16 @@ const Player = () => {
       });
       setTrack(data.tracks[0]);
     }
+    
+    
     if(router && router.query.track) {
       callApi();
       console.log(track);
+      audioElement.current.play();
+      audioElement.current.paused ? setSuperPlaying(false) : setSuperPlaying(true);
     }
     
-  }, [router])
+  }, [router]);
   
 
   return (
@@ -62,36 +71,16 @@ const Player = () => {
             ? track.artists.map(artist => artist.name).join(', ')
             : '...'}
           </h4>
-          <div className={styles["progress-bar"]}>
-            <div
-              className={`${styles["progress-bar--out"]} ${styles["progress-bar-shape"]}`}
-            >
-              <div
-                className={`${styles["progress-bar--in"]} ${styles["progress-bar-shape"]}`}
-              ></div>
-            </div>
-            <span className={styles["progress-bar__time-passed"]}>0:00</span>
-            <span className={styles["progress-bar__time-left"]}>0:00</span>
-          </div>
+         <ProgressBar audio={audioElement.current} superPlaying={superPlaying} />
         </div>
         <div className={styles["player__buttons-panel"]}>
-          <button type="button">
-            <Image src={loopIcon} alt="Repeat" />
-          </button>
-          <button type="button">
-            <Image src={previousIcon} alt="Previous" />
-          </button>
-          <button type="button" className={styles.big}>
-            <Image src={playIcon} alt="Play" />
-          </button>
-          <button type="button">
-            <Image src={nextIcon} alt="Next" />
-          </button>
-          <button type="button">
-            <Image src={shuffleIcon} alt="Shuffle" />
-          </button>
+          <LoopButton />
+          <PreviousTrackButton />
+          <PlayButton audio={audioElement.current} setSuperPlaying={setSuperPlaying}/>
+          <NextTrackButton/>
+          <ShuffleButton />
         </div>
-        <audio src={track.preview_url}></audio>
+        <audio ref={audioElement} src={track.preview_url}></audio>
       </section>
     </>
   );

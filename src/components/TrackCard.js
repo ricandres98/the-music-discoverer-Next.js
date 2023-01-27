@@ -1,13 +1,17 @@
 import styles from "styles/TrackCard.module.scss";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import AppContext from "context/AppContext";
 
 const TrackCard = (props) => {
   const imageSize = 100;
   const router = useRouter();
+  const { state, setPlaylist } = useContext(AppContext);
 
   const handleClick = () => {
-    router.push(`/player/${props.id}`);
+    router.push(`/player/${props.id}#${props.from[0]}=${props.from[1]}`);
+    setPlaylist(props.list);
   };
 
   return (

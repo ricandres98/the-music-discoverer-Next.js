@@ -24,6 +24,7 @@
     }
     
     @media screen and (min-width:900px) {
+        $album-size: 130px;
         grid-template-columns: repeat(auto-fill, $album-size);
     }
 }

@@ -1,2 +1,16 @@
-- Implementar una sombra al header cuando el scroll es diferente de 0
-- Aplicar display flex en el header para alinear la barra de busqueda con el botón (<)
+- Construir vista de albums ✅
+- Construir vista de artistas
+- Problema✅: Si cargamos una pagina del reproductor escribiendo directamente la URL,
+     la canción no se reproducirá, lo cual está bien, 
+     pero el botón play/pause no se actualiza en función de esto
+- Rediseñar vista de la página principal
+- Crear componentes aparte para las listas genéricas, en los que se almacenen las funciones que construyen los loading skeletons
+- Terminar el reproductor:
+     - Barra de progreso de la canción funcionando:
+          - Barra cargando ✅
+          - Segundos cargando
+     - Botones de anterior y siguiente funcionando
+     - Botón de shuffle 
+     - Botón de repeat
+
+- comportamiento del boton play/pause al terminar canción

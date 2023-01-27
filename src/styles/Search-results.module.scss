@@ -9,10 +9,8 @@
     }
 }
 
-.results__tracks{
-    .tracks-list {
-        @include track-list();
-    }
+.tracks-list {
+    @include track-list();
 }
 
 .results__albums {
