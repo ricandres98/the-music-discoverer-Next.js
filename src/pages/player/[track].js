@@ -10,12 +10,12 @@ import LoopButton from 'components/LoopButton';
 import NextTrackButton from 'components/NextTrackButton';
 import ShuffleButton from 'components/ShuffleButton';
 import AppContext from 'context/AppContext';
-import styles from 'styles/Player.module.scss';
 import ProgressBar from 'components/ProgressBar';
+import styles from 'styles/Player.module.scss';
 
 const Player = () => {
-  const { state } = useContext(AppContext);
-
+  const { state, setPlaylist } = useContext(AppContext);
+  
   const [superPlaying, setSuperPlaying] = useState(false)
   const [track, setTrack] = useState({
     images: corchea,
@@ -25,27 +25,66 @@ const Player = () => {
 
   useEffect(() => {
     const id = router.query.track;
+
+    const getPlaylist = () => {
+      const [_, hash] = router.asPath?.split("#");
+      const [from, value] = hash ? hash.split("=") : '';
+      // console.log({ from, value });
+      let callback = () => console.log('nothing yet');
+      let playlist = [];
+
+      switch (from) {
+        case "search":
+          callback = async function callApi() {
+            try {
+              const query = value;
+              const api = useApiInstance();
+              const response = await api("search/", {
+                params: {
+                  type: "multi",
+                  q: query,
+                  limit: 10,
+                },
+              });
+  
+              const { data } = response;
+              playlist = data.tracks.items.map(item => item.data);
+              setPlaylist(playlist);
+              // console.log(playlist);
+            } catch(error) {
+              console.error(error);
+            }
+          };
+          break;
+      }
+
+      callback();
+    };
     
     async function callApi() {
-      const api = useApiInstance();
-      const { data } = await api('tracks/', {
-        params: {
-          'ids': id,
-        }
-      });
-      setTrack(data.tracks[0]);
+      try{
+        const api = useApiInstance();
+        const { data } = await api('tracks/', {
+          params: {
+            'ids': id,
+          }
+        });
+        setTrack(data.tracks[0]);
+      } catch(error) {
+        console.error(error);
+      }
     }
     
-    
     if(router && router.query.track) {
+      getPlaylist();
       callApi();
-      console.log(track);
       audioElement.current.play();
       audioElement.current.paused ? setSuperPlaying(false) : setSuperPlaying(true);
     }
     
   }, [router]);
   
+  // if (audioElement.current?.src && audioElement.current.paused) audioElement.current.play();
 
   return (
     <>
@@ -74,10 +113,10 @@ const Player = () => {
          <ProgressBar audio={audioElement.current} superPlaying={superPlaying} />
         </div>
         <div className={styles["player__buttons-panel"]}>
-          <LoopButton />
-          <PreviousTrackButton />
-          <PlayButton audio={audioElement.current} setSuperPlaying={setSuperPlaying}/>
-          <NextTrackButton/>
+          <LoopButton audio={audioElement.current} />
+          <PreviousTrackButton track={track} />
+          <PlayButton audio={audioElement.current} setSuperPlaying={setSuperPlaying} superPlaying={superPlaying}/>
+          <NextTrackButton track={track}/>
           <ShuffleButton />
         </div>
         <audio ref={audioElement} src={track.preview_url}></audio>

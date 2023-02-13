@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
-import styles from "styles/Player.module.scss";
+import useFormatTime from "hooks/useFormatTime";
+import styles from "styles/ProgressBar.module.scss";
 
 const ProgressBar = ({ audio, superPlaying }) => {
-
-//   const [playing, setPlaying] = useState(superPlaying);
+  //   const [playing, setPlaying] = useState(superPlaying);
 
   const [stylesIn, setStylesIn] = useState({
-    width: "0%",
+    width: `${(audio?.currentTime / audio?.duration) * 100}%`,
   });
 
   useEffect(() => {
-    if(superPlaying) {
-        const interval = setInterval(() => {
-          setStylesIn({
-            width: `${(audio?.currentTime / audio?.duration) * 100}%`,
-          });
-        }, 150);    
-    
-        // if (superPlaying === false) {
-        //   clearInterval(interval);
+    if (superPlaying) {
+      const interval = setInterval(() => {
+        setStylesIn({
+          width: `${(audio?.currentTime / audio?.duration) * 100}%`,
+        });
+
+        // if(audio.ended && !audio.paused) {
+        //   console.log('CHACABÓ');
         // }
-    
-        return () => {
-          clearInterval(interval);
-        };
+      }, 150);
+      
+      return () => {
+        clearInterval(interval);
+      };
     }
   }, [superPlaying]);
 
@@ -37,8 +37,12 @@ const ProgressBar = ({ audio, superPlaying }) => {
           style={stylesIn}
         ></div>
       </div>
-      <span className={styles["progress-bar__time-passed"]}>0:00</span>
-      <span className={styles["progress-bar__time-left"]}>0:00</span>
+      <span className={styles["progress-bar__time-passed"]}>
+        {audio?.currentTime ? useFormatTime(audio?.currentTime) : '00:00'}
+      </span>
+      <span className={styles["progress-bar__time-left"]}>
+        - {audio?.currentTime ? useFormatTime(audio?.duration - audio?.currentTime) : '00:00' }
+      </span>
     </div>
   );
 };

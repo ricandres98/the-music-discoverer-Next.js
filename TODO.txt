@@ -1,16 +1,20 @@
 - Construir vista de albums ✅
-- Construir vista de artistas
-- Problema✅: Si cargamos una pagina del reproductor escribiendo directamente la URL,
+- Problema: Si cargamos una pagina del reproductor escribiendo directamente la URL,
      la canción no se reproducirá, lo cual está bien, 
-     pero el botón play/pause no se actualiza en función de esto
-- Rediseñar vista de la página principal
-- Crear componentes aparte para las listas genéricas, en los que se almacenen las funciones que construyen los loading skeletons
+     pero el botón play/pause no se actualiza en función de esto ✅
+- Crear componentes aparte para las listas genéricas, en los que se almacenen las funciones que construyen los loading skeletons ✅
+- comportamiento del boton play/pause al terminar canción ✅
 - Terminar el reproductor:
-     - Barra de progreso de la canción funcionando:
+     - Barra de progreso de la canción funcionando:✅
           - Barra cargando ✅
-          - Segundos cargando
-     - Botones de anterior y siguiente funcionando
+          - Segundos cargando ✅
+     - Botón de repeat ✅
+     - Botones de anterior y siguiente funcionando ---> Ya se obtiene el playlist y se busca el index del track actual✅
+       - Resolver problema con el contexto para el manejo de track ✅
+       - Resolver: al pasar a la canción siguiente o anterior, el reproductor queda pausado.
      - Botón de shuffle 
-     - Botón de repeat
+       - Revisar si las listas est[an funcionando bien
+       - Corregir que se está remezclando la lista cada vez que se pasa a una canción diferente.
 
-- comportamiento del boton play/pause al terminar canción
+- Construir vista de artistas
+- Rediseñar vista de la página principal

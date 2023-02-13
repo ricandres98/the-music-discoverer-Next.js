@@ -14,8 +14,6 @@ const PlayButton = (props) => {
       
       setPlaying(!playing);
       props.setSuperPlaying(!playing);
-      
-      console.log(`${props.audio.paused}!!!!!!!!!!!!!!!!!!!!`)
     };
     
     useEffect(() => {
@@ -24,9 +22,10 @@ const PlayButton = (props) => {
         : setPlaying(true);
 
       const interval = setInterval(()=>{
-        const trackIsOver = props.audio?.currentTime - props.audio?.duration < 0.05;
-        if(trackIsOver) {
+        // const trackIsOver = props.audio?.currentTime - props.audio?.duration < 0.05;
+        if(props.audio?.ended) {
           setPlaying(false);
+          clearInterval(interval);
         }
       }, 150);
 

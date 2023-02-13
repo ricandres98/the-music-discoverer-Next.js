@@ -1,33 +1,43 @@
+import corchea from 'assets/icons/corchea.svg';
 import { useState } from "react";
 const initialState = {
-    track: {
-        preview_url: '',
-    }, 
-    playlist: [],
-}
+  track: {},
+  playlist: [],
+  randomPlaylist: [],
+  shuffle: false,
+};
 
 const useInitialState = () => {
-    const [state, setState] = useState(initialState);
+  const [state, setState] = useState(initialState);
 
-    const setTrack = (track) => {
-        setState({
-            ...state,
-            track: track
-        });    
-    }
+  const setTrack = (newTrack) => {
+    setState({
+        track: newTrack,
+        ...state,
+    });
+  };
 
-    const setPlaylist = (list) => {
-        setState({
-            ...state,
-            playlist: list,
-        })
-    }
+  const setPlaylist = (list) => {
+    setState({
+      ...state,
+      playlist: list,
+    });
+  };
 
-    return {
-        state,
-        setTrack,
-        setPlaylist,
-    }
-}
+  const setShuffle = (boolean) => {
+    setState({
+      ...state,
+      shuffle: boolean,
+    });
+  }
+
+  return {
+    state,
+    setState,
+    setTrack,
+    setPlaylist,
+    setShuffle,
+  };
+};
 
 export default useInitialState;

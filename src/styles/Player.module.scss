@@ -56,41 +56,6 @@
             text-align: center;
             overflow: hidden;
         }
-
-        .progress-bar {
-            position: relative;
-            max-width: 320px;
-            margin: 0 auto;
-
-            &--out {
-                width: 87%;
-                max-width: 400px;
-                margin: 0 auto;
-                background-color: $secondary-color-1;
-            }
-
-            &--in {
-                width: 0%;
-                background-color: $secondary-color-2;
-            }
-
-            &-shape {
-                display: block;
-                height: 7px;
-                border-radius: 10px;
-                margin-bottom: 5px;
-            }
-
-            span {
-                font-size: 1.4rem;
-                font-weight: 500;
-            }
-
-            &__time-left{
-                position: absolute;
-                right: 0px;
-            }
-        }
     }
 
     &__buttons-panel {
@@ -183,24 +148,6 @@
                 font-size: 1.8rem;
                 margin-bottom: 15px;
                 max-height: 28px;
-            }
-
-            .progress-bar { 
-                max-width: 600px;
-    
-                &--out {
-                    width: 87%;
-                    max-width: unset;
-                }
-    
-                &-shape {
-                    height: 12px;
-                    margin-bottom: 10px;
-                }
-    
-                span {
-                    font-size: 1.8rem;
-                }
             }
         }
 
