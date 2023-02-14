@@ -88,6 +88,7 @@ const Search = ({ data }) => {
                 name={artist.profile.name}
                 srcImg={artist.visuals.avatarImage?.sources[0].url}
                 key={artist.uri.split(":")[2]}
+                id={artist.uri.split(':')[2]}
               />
             ))}
           </BoxGridContainer>

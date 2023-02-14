@@ -1,4 +1,6 @@
 - Construir vista de albums ✅
+  - Hacer que los elementos TrackCard de los albumes al ser clickeados coloquen el hash #album=nombre_del_album ✅
+
 - Problema: Si cargamos una pagina del reproductor escribiendo directamente la URL,
      la canción no se reproducirá, lo cual está bien, 
      pero el botón play/pause no se actualiza en función de esto ✅
@@ -13,8 +15,10 @@
        - Resolver problema con el contexto para el manejo de track ✅
        - Resolver: al pasar a la canción siguiente o anterior, el reproductor queda pausado.
      - Botón de shuffle 
-       - Revisar si las listas est[an funcionando bien
-       - Corregir que se está remezclando la lista cada vez que se pasa a una canción diferente.
+       - Revisar si las listas est[an funcionando bien ✅
+       - Corregir que se está remezclando la lista cada vez que se pasa a una canción diferente.✅
 
 - Construir vista de artistas
+  - Revisar por qué no se está actualizando el estado luego de llamar a la API en artist/[artist].js
+
 - Rediseñar vista de la página principal

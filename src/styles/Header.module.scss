@@ -11,6 +11,7 @@
     position: sticky;
     top: 0;
     background-color: $gray-2;
+    transition: box-shadow 0.2s linear;
     z-index: 1;
 
     &__main-title {

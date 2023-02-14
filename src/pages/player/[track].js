@@ -30,35 +30,39 @@ const Player = () => {
       const [_, hash] = router.asPath?.split("#");
       const [from, value] = hash ? hash.split("=") : '';
       // console.log({ from, value });
-      let callback = () => console.log('nothing yet');
       let playlist = [];
-
-      switch (from) {
-        case "search":
-          callback = async function callApi() {
-            try {
-              const query = value;
-              const api = useApiInstance();
-              const response = await api("search/", {
+      (async () => {
+        try {
+          const query = value;
+          const api = useApiInstance();
+          switch (from) {
+            case "search": {
+              const { data } = await api("search/", {
                 params: {
                   type: "multi",
                   q: query,
                   limit: 10,
                 },
               });
-  
-              const { data } = response;
-              playlist = data.tracks.items.map(item => item.data);
-              setPlaylist(playlist);
-              // console.log(playlist);
-            } catch(error) {
-              console.error(error);
+              playlist = data.tracks.items.map((item) => item.data);
+              break;
             }
-          };
-          break;
-      }
 
-      callback();
+            case "album": {
+              const { data } = await api("albums/", {
+                params: {
+                  ids: id,
+                },
+              });
+              playlist = data.albums[0].tracks.items;
+              break;
+            }
+          }
+          setPlaylist(playlist);
+        } catch (err) {
+          console.error(err);
+        }
+      })();
     };
     
     async function callApi() {

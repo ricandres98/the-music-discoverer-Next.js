@@ -38,7 +38,7 @@ const albumView = (props) => {
   return (
     <>
       <Head>
-        <title>Album </title>
+        <title>Album - The music discoverer</title>
       </Head>
       <Header page="back-button" />
       <section className={styles["album-info-section"]}>
@@ -80,7 +80,7 @@ const albumView = (props) => {
               id={track.id}
               key={track.id}
               list={arr}
-              from={["search", router.query.query]}
+              from={["album", router.query.album]}
             />
           ))}
         </TrackContainer>

@@ -21,10 +21,11 @@ const ShuffleButton = () => {
       setState({
         ...state,
         randomPlaylist: list,
-      })
+      });
       console.log(list);
+      console.log(state)
     }
-  
+    
   },[state.shuffle])
 
   return (

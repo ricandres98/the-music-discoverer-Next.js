@@ -10,11 +10,13 @@ const PreviousTrackButton = (props) => {
     const router = useRouter();
 
     const handleClick = () => {
-        if (state.playlist.length) {
+        const currentPlaylist = state.shuffle ? state.randomPlaylist : state.playlist;
+
+        if (currentPlaylist.length) {
             const [_, hash] = router.asPath?.split("#");
-            const index = state.playlist.findIndex(track => track.id === currentTrack.id)
+            const index = currentPlaylist.findIndex(track => track.id === currentTrack.id)
             if (index > 0) {
-                const newRoute = hash ? `${state.playlist[index - 1].id}#${hash}` : `${state.playlist[index + 1].id}`
+                const newRoute = hash ? `${currentPlaylist[index - 1].id}#${hash}` : `${currentPlaylist[index + 1].id}`
                 router.push(newRoute);
             }
         }

@@ -48,7 +48,6 @@ const Header = (props) => {
     const handleScroll = () => {
       const position = window.scrollY;
       setScrollValue(position);
-      console.log(scrollValue);
     }
 
     const onScroll = () => window.requestAnimationFrame(handleScroll)
