@@ -39,6 +39,12 @@ const Search = ({ data }) => {
       console.log(router);
       callApi();
     }
+    return () => {
+      setAlbums([]);
+      setArtists([]);
+      setTracks([]);
+    }
+
   }, [router]);
 
   return (

@@ -3,9 +3,9 @@ import skeleton from 'styles/skeleton.module.scss';
 
 const ArtistSkeleton = () => {
   return (
-    <div class={styles["artist-item"]}>
-      <div class={`${styles["artist-avatar"]} ${skeleton["artist-avatar"]} ${skeleton.skeleton}`}></div>
-      <span class={`${styles["artist-name"]} ${skeleton["artist-name"]} ${skeleton.skeleton}`}></span>
+    <div className={styles["artist-item"]}>
+      <div className={`${styles["artist-avatar"]} ${skeleton["artist-avatar"]} ${skeleton.skeleton}`}></div>
+      <span className={`${styles["artist-name"]} ${skeleton["artist-name"]} ${skeleton.skeleton}`}></span>
     </div>
   );
 };

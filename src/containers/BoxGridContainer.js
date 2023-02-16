@@ -6,7 +6,7 @@ const BoxGridContainer = ({ children, type }) => {
   const albumSkeletonArray = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<AlbumSkeleton />);
+      array.push(<AlbumSkeleton key={i}/>);
     }
     return array;
   };
@@ -14,7 +14,7 @@ const BoxGridContainer = ({ children, type }) => {
   const artistSkeletonArray = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<ArtistSkeleton />);
+      array.push(<ArtistSkeleton key={i}/>);
     }
     return array;
   };
