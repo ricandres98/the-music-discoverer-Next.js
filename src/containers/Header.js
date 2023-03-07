@@ -40,6 +40,13 @@ const Header = (props) => {
             <BackButton />
           </>
         );
+      case "back-button-title":
+        return (
+          <>
+            <BackButton />
+            <h1 className={styles.title}>{props.title}</h1>
+          </>
+        );
     }
   }
 

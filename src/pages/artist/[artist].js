@@ -44,10 +44,12 @@ const artistPage = () => {
         console.log(data.data.artist.discography.albums.items.map(item => item.releases.items[0]));
 
         const cleanData = data.data.artist.discography.albums.items.map(item => item.releases.items[0]);
-        setAlbums(cleanData);
+        if (cleanData.length === 0) setAlbums('No data could be found')
+        else setAlbums(cleanData);
         
       } catch(err) {
-        throw(new Error(err));
+        setAlbums('No data could be found');
+        // throw(new Error(err));
       }
     };
 
@@ -58,11 +60,16 @@ const artistPage = () => {
     }
   }, [router]);
 
+  const seeMoreAlbums = () => {
+    const id = router.query.artist;
+    router.push(`/artist/albums/${id}`);
+  }
+
   return (
     <>
       <Header page="back-button" />
       <Head>
-        <title>{artist ? artist.name : 'Artist'} - The music Discoverer</title>
+        <title>{`${artist ? artist.name : "Artist"} - The music Discoverer`}</title>
       </Head>
       <section className={styles.artist}>
         <div className={styles["artist__profile"]}>
@@ -77,26 +84,39 @@ const artistPage = () => {
               />
             </picture>
           </div>
-          <h1 className={styles["artist-name"]}>{artist?.name}</h1>
+          <div className={styles["artist-data"]}>
+            <h1 className={styles["artist-name"]}>{artist?.name}</h1>
+            <ul className={styles["artist-genres"]}>
+              {artist?.genres.map(genre => (
+                <li key={`gender-${genre}`}>{genre}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className={styles["artist__albums"]}>
           <div
             className={`${styles["artist__albums__title"]} ${styles["artist-section-title"]}`}
           >
             <h2>Albums</h2>
-            <button type="button" className={styles["see-more-button"]}>
+            <button 
+              type="button" 
+              className={styles["see-more-button"]}
+              onClick={seeMoreAlbums}
+            >
               See more
             </button>
           </div>
-          <BoxGridContainer type='album'>
-            {albums?.map(album => (
-            <AlbumCard 
-              title={album.name}
-              imageSources={album.coverArt.sources}
-              key={album.id}
-              id={album.id}            
-            />
-            ))}
+          <BoxGridContainer type="album">
+            {typeof albums === "object"
+              ? albums?.map((album) => (
+                  <AlbumCard
+                    title={album.name}
+                    imageSources={album.coverArt.sources}
+                    key={album.id}
+                    id={album.id}
+                  />
+                ))
+              : albums}
           </BoxGridContainer>
         </div>
       </section>

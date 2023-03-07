@@ -12,11 +12,13 @@
     top: 0;
     background-color: $gray-2;
     transition: box-shadow 0.2s linear;
-    z-index: 1;
+    z-index: 3;
 
     &__main-title {
         margin-bottom: 12px;
         font-size: 2.2rem;
+        transform: translateX(-300px);
+        animation: main-title .7s forwards 0.5s cubic-bezier(.38,.01,.62,1.55);
     }
 
     &__search {
@@ -31,6 +33,8 @@
         margin: 0 auto;
         $box-height: 35px;
         $button-width: 45px;
+        transform: translateY(-150px);
+        animation: form .7s forwards 0.5s cubic-bezier(.38,.01,.62,1.55);
 
         input {
             width: calc(100% - #{$button-width});
@@ -57,21 +61,40 @@
             text-decoration: none;
             border-radius: 0 5px 5px 0;
 
+            svg {
+                width: 25px;
+                color: $white;
+            }
+
             &:active {
                 background-color: $primary-color-1;
             }
         }
+        
+    }
+
+    .title {
+        position: absolute;
+        width: fit-content;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
 
     &__back-button{
         border: none;
         margin-bottom: 6px;
         margin-right: 10px;
-        font-family: $font-titles;
+        // font-family: $font-titles;
         font-size: 2.6rem;
         font-weight: 600;
         background-color: unset;
         color: $white;
+
+        svg {
+            width: 35px;
+        }
     }
 
     &__section-title {
@@ -103,5 +126,22 @@
             margin-top: 20px;
             font-size: 2.4rem;
         }
+    }
+}
+
+@keyframes form {
+    0%{
+        transform: translateY(-150px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes main-title {
+    0%{
+        transform: translateX(-300px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }
