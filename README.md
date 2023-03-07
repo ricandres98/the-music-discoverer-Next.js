@@ -1,3 +1,7 @@
+# the-music-discoverer-Next.js
+This is a migration of the music discoverer to Next.js. It also comes with visual improvements as well as new functionalities.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
