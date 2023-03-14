@@ -1,6 +1,7 @@
 @mixin button {
     border: none;
     background-color: $primary-color-2;
+    background:linear-gradient($primary-color-2,$primary-color-1);
     color: $white;
     font-family: $font-titles;
     font-weight: 600;

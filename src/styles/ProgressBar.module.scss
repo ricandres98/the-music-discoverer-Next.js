@@ -17,6 +17,7 @@
     &--in {
         width: 0%;
         background-color: $secondary-color-2;
+        background: linear-gradient(#81f7aa,$secondary-color-2);
         transition: width 150ms linear;
     }
 

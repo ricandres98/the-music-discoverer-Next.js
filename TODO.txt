@@ -32,4 +32,6 @@
   por lo que mientras estas cargan el espacio está vacío). ✅
 
 - Cuando estamos en el reproductor y pasamos a una canción diferente, 
-  el botón back en el header manda a la canción anteror y debería mandar a la vista anterior.🟡
+  el botón back en el header manda a la canción anterior y debería mandar a la vista anterior.🟡
+
+- Revisar estilos de color de fondo del header 🟡
