@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router';
-import styles from 'styles/Header.module.scss';
+import { useRouter } from "next/router";
+import styles from "styles/Header.module.scss";
 
-const BackButton = () => {
+const BackButton = (props) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -12,14 +12,19 @@ const BackButton = () => {
     }
   };
 
+  let styleToButton;
+  if (props.type === "with-search") {
+    styleToButton = styles["header__back-button"];
+  } else {
+    styleToButton = `${styles["header__back-button"]} ${styles["no-search"]}`;
+  }
   return (
-    <button className={styles["header__back-button"]} onClick={handleClick}>
+    <button className={styleToButton} onClick={handleClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
+        viewBox="0 0 20 15"
         fill="currentColor"
-        className="w-5 h-5"
-        strokeWidth="2"
+        strokeWidth={3}
       >
         <path
           fillRule="evenodd"

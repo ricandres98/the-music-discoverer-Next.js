@@ -1,4 +1,4 @@
-import corchea from 'assets/icons/corchea.svg';
+import corchea from "assets/icons/corchea.svg";
 import { useState } from "react";
 const initialState = {
   track: {},
@@ -12,8 +12,8 @@ const useInitialState = () => {
 
   const setTrack = (newTrack) => {
     setState({
-        track: newTrack,
-        ...state,
+      track: newTrack,
+      ...state,
     });
   };
 
@@ -29,7 +29,7 @@ const useInitialState = () => {
       ...state,
       shuffle: boolean,
     });
-  }
+  };
 
   return {
     state,

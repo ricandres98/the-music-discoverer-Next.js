@@ -6,6 +6,8 @@
 
 .header {
     display: grid;
+    align-items: center;
+    min-height: 80px;
     // flex-wrap: wrap;
     padding: 20px;
     position: sticky;
@@ -77,7 +79,7 @@
     }
 
     .title {
-        position: absolute;
+        // position: absolute;
         width: fit-content;
         bottom: 10px;
         left: 0;
@@ -85,9 +87,13 @@
         margin: 0 auto;
     }
 
+    &__back-button.no-search {
+        position: absolute;
+        left: 10px;
+    }
     &__back-button{
         border: none;
-        margin-bottom: 6px;
+        margin-bottom: 15px;
         margin-right: 10px;
         // font-family: $font-titles;
         font-size: 2.6rem;
@@ -97,6 +103,7 @@
         justify-self: start;
 
         svg {
+            display: inline-block;
             width: 35px;
         }
     }
@@ -116,14 +123,33 @@
 
 @media screen and (min-width: 600px) {
     .header {
+        &__back-button.no-search {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            
+            svg {
+                display: block;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+    .header {
         padding: 40px 55px 30px;
+        
+        &__back-button{
+            svg {
+                display: block;
+                width: 40px;
+                height: 40px;
+            }
+        }
 
         &__search form {
             max-width: 490px;
-        }
-
-        &__back-button{
-            font-size: 3.6rem;
         }
 
         &__section-title {
@@ -132,13 +158,6 @@
         }
 
         &__back-button{
-            position: absolute;
-            left: 40px;
-            top: 40px;
-    
-            svg {
-                width: 35px;
-            }
         }
     }
 }

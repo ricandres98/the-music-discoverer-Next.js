@@ -1,6 +1,6 @@
-import AppContext from 'context/AppContext';
-import useInitialState from 'hooks/useInitialState';
-import '../styles/globals.scss'
+import AppContext from "context/AppContext";
+import useInitialState from "hooks/useInitialState";
+import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   const initialState = useInitialState();
@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     <AppContext.Provider value={initialState}>
       <Component {...pageProps} />
     </AppContext.Provider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -6,16 +6,14 @@ const TrackContainer = ({ children }) => {
   const trackSkeletonArray = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<TrackSkeleton key={i}/>);
+      array.push(<TrackSkeleton key={i} />);
     }
     return array;
   };
 
   return (
     <div className={styles["tracks-list"]}>
-      {children.length 
-        ? children 
-        : trackSkeletonArray()}
+      {children.length ? children : trackSkeletonArray()}
     </div>
   );
 };

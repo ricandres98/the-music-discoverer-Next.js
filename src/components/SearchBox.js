@@ -13,7 +13,7 @@ const SearchBox = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(searchQuery) {
+    if (searchQuery) {
       router.push(`/search/${searchQuery}`);
     }
   };
@@ -21,7 +21,7 @@ const SearchBox = () => {
   const handleKeyDown = (e) => {
     if (e.key == "Enter") {
       e.preventDefault();
-      if(searchQuery) {
+      if (searchQuery) {
         router.push(`/search/${searchQuery}`);
       }
     }

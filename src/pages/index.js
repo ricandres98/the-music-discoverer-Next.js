@@ -1,25 +1,25 @@
-import Header from 'containers/Header';
-import Head from 'next/head';
-import Image from 'next/image';
-import backgroundNotes from 'assets/background-notes.svg';
-import styles from 'styles/Home.module.scss';
-import Link from 'next/link';
-import img1 from 'assets/images/drake-04g-344x344.jpg';
-import img2 from 'assets/images/harry-styles-6jk-artistchart-rcm-344x344.jpg';
-import img3 from 'assets/images/luke-combs-9dm-artist-chart-501-344x344.jpg';
-import img4 from 'assets/images/miley-cyrus-jca-artistchart-jaw-344x344.jpg';
-import img5 from 'assets/images/morgan-wallen-nlu-artist-chart-zuy-344x344.jpg';
-import img6 from 'assets/images/pnk-it7-artist-chart-8sk-344x344.jpg';
-import img7 from 'assets/images/rihanna-k0p-artistchart-5wb-344x344.jpg';
-import img8 from 'assets/images/sza-8os-344x344.jpg';
-import img9 from 'assets/images/taylor-swift-824-artistchart-zpe-344x344.jpg';
-import img10 from 'assets/images/the-weeknd-xmx-artist-chart-uxt-344x344.jpg';
+import Header from "containers/Header";
+import Head from "next/head";
+import Image from "next/image";
+import backgroundNotes from "assets/background-notes.svg";
+import styles from "styles/Home.module.scss";
+import Link from "next/link";
+import img1 from "assets/images/drake-04g-344x344.jpg";
+import img2 from "assets/images/harry-styles-6jk-artistchart-rcm-344x344.jpg";
+import img3 from "assets/images/luke-combs-9dm-artist-chart-501-344x344.jpg";
+import img4 from "assets/images/miley-cyrus-jca-artistchart-jaw-344x344.jpg";
+import img5 from "assets/images/morgan-wallen-nlu-artist-chart-zuy-344x344.jpg";
+import img6 from "assets/images/pnk-it7-artist-chart-8sk-344x344.jpg";
+import img7 from "assets/images/rihanna-k0p-artistchart-5wb-344x344.jpg";
+import img8 from "assets/images/sza-8os-344x344.jpg";
+import img9 from "assets/images/taylor-swift-824-artistchart-zpe-344x344.jpg";
+import img10 from "assets/images/the-weeknd-xmx-artist-chart-uxt-344x344.jpg";
 
 export default function Home() {
   const images1 = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
-  const doubleImages1 = [...images1, ...images1]
+  const doubleImages1 = [...images1, ...images1];
   const images2 = images1.sort(() => Math.random() - 0.5);
-  const doubleImages2 = [...images2, ...images2]
+  const doubleImages2 = [...images2, ...images2];
   return (
     <>
       <Head>
@@ -37,8 +37,8 @@ export default function Home() {
                     width={200}
                     height={200}
                     key={`left-moving-img-${index}`}
-                    alt='artist-image'
-                    placeholder='blur'
+                    alt="artist-image"
+                    placeholder="blur"
                   />
                 </div>
               ))}
@@ -61,8 +61,8 @@ export default function Home() {
                     width={200}
                     height={200}
                     key={`right-moving-img-${index}`}
-                    alt='artist-image'
-                    placeholder='blur'
+                    alt="artist-image"
+                    placeholder="blur"
                   />
                 </div>
               ))}

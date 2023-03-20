@@ -20,7 +20,7 @@ const ProgressBar = ({ audio, superPlaying }) => {
         //   console.log('CHACABÓ');
         // }
       }, 150);
-      
+
       return () => {
         clearInterval(interval);
       };
@@ -38,10 +38,13 @@ const ProgressBar = ({ audio, superPlaying }) => {
         ></div>
       </div>
       <span className={styles["progress-bar__time-passed"]}>
-        {audio?.currentTime ? useFormatTime(audio?.currentTime) : '00:00'}
+        {audio?.currentTime ? useFormatTime(audio?.currentTime) : "00:00"}
       </span>
       <span className={styles["progress-bar__time-left"]}>
-        - {audio?.currentTime ? useFormatTime(audio?.duration - audio?.currentTime) : '00:00' }
+        -{" "}
+        {audio?.currentTime
+          ? useFormatTime(audio?.duration - audio?.currentTime)
+          : "00:00"}
       </span>
     </div>
   );

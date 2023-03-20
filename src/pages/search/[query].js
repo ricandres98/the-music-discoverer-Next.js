@@ -6,36 +6,39 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useApiInstance from "hooks/useApiInstance";
-import styles from 'styles/Search-results.module.scss';
+import styles from "styles/Search-results.module.scss";
 import TrackContainer from "containers/TrackContainer";
 import BoxGridContainer from "containers/BoxGridContainer";
 
 const Search = ({ data }) => {
   const router = useRouter();
 
-  const [ tracks, setTracks ] = useState([]);
-  const [ artists, setArtists ] = useState([]);
-  const [ albums, setAlbums ] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-    setTracks([]);
     async function callApi() {
-      const query = router.query.query;
-      const api = useApiInstance();
-      const response = await api("search/", {
-        params: {
-          type: "multi",
-          q: query,
-          limit: 10,
-        },
-      });
-      const data = response.data;
-      console.log({data});
-      setTracks(data?.tracks.items.map((item) => item.data));
-      setAlbums(data?.albums.items.map((item) => item.data));
-      setArtists(data?.artists.items.map((item) => item.data));
+      try {
+        const query = router.query.query;
+        const api = useApiInstance();
+        const response = await api("search/", {
+          params: {
+            type: "multi",
+            q: query,
+            limit: 10,
+          },
+        });
+        const data = response.data;
+        console.log({ data });
+        setTracks(data?.tracks.items.map((item) => item.data));
+        setAlbums(data?.albums.items.map((item) => item.data));
+        setArtists(data?.artists.items.map((item) => item.data));
+      } catch (err) {
+        throw new Error(err);
+      }
     }
-    if(router && router.query.query){
+    if (router && router.query.query) {
       console.log(router);
       callApi();
     }
@@ -43,8 +46,7 @@ const Search = ({ data }) => {
       setAlbums([]);
       setArtists([]);
       setTracks([]);
-    }
-
+    };
   }, [router]);
 
   return (
@@ -94,7 +96,7 @@ const Search = ({ data }) => {
                 name={artist.profile.name}
                 srcImg={artist.visuals.avatarImage?.sources[0].url}
                 key={artist.uri.split(":")[2]}
-                id={artist.uri.split(':')[2]}
+                id={artist.uri.split(":")[2]}
               />
             ))}
           </BoxGridContainer>

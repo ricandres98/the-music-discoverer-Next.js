@@ -6,7 +6,7 @@ const BoxGridContainer = ({ children, type }) => {
   const albumSkeletonArray = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<AlbumSkeleton key={i}/>);
+      array.push(<AlbumSkeleton key={i} />);
     }
     return array;
   };
@@ -14,18 +14,19 @@ const BoxGridContainer = ({ children, type }) => {
   const artistSkeletonArray = () => {
     const array = [];
     for (let i = 0; i < 10; i++) {
-      array.push(<ArtistSkeleton key={i}/>);
+      array.push(<ArtistSkeleton key={i} />);
     }
     return array;
   };
 
   const currentSkeleton = () => {
-    if(type === 'album') {
-        return albumSkeletonArray();
-    } if (type === 'artist') {
-        return artistSkeletonArray();
+    if (type === "album") {
+      return albumSkeletonArray();
     }
-  }
+    if (type === "artist") {
+      return artistSkeletonArray();
+    }
+  };
 
   return (
     <div className={styles["artists-list"]}>

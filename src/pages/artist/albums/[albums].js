@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BoxGridContainer from "containers/BoxGridContainer";
 import AlbumCard from "components/AlbumCard";
+import styles from "styles/AlbumsPage.module.scss";
 
 const albumsPage = () => {
   const router = useRouter();
   const [albums, setAlbums] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
     const id = router.query.albums;
     const api = useApiInstance();
 
@@ -19,17 +20,22 @@ const albumsPage = () => {
           params: {
             id: id,
             limit: 100,
-          }
+          },
         });
         console.log("data2: ", data);
-        console.log(data.data.artist.discography.albums.items.map(item => item.releases.items[0]));
+        console.log(
+          data.data.artist.discography.albums.items.map(
+            (item) => item.releases.items[0]
+          )
+        );
 
-        const cleanData = data.data.artist.discography.albums.items.map(item => item.releases.items[0]);
-        if (cleanData.length === 0) setAlbums('No data could be found')
+        const cleanData = data.data.artist.discography.albums.items.map(
+          (item) => item.releases.items[0]
+        );
+        if (cleanData.length === 0) setAlbums("No data could be found");
         else setAlbums(cleanData);
-        
-      } catch(err) {
-        setAlbums('No data could be found');
+      } catch (err) {
+        setAlbums("No data could be found");
         // throw(new Error(err));
       }
     };
@@ -37,23 +43,25 @@ const albumsPage = () => {
     if (router && router.query.albums) {
       getAlbumsFromArtist();
     }
-  })
-  
+  });
+
   return (
     <>
-      <Header page="back-button-title" title={`Albums`}/>
-      <BoxGridContainer>
-        {typeof albums === "object"
-          ? albums?.map((album) => (
-              <AlbumCard
-                title={album.name}
-                imageSources={album.coverArt.sources}
-                key={album.id}
-                id={album.id}
-              />
-            ))
-          : albums}
-      </BoxGridContainer>
+      <Header page="back-button-title" title={`Albums`} />
+      <section className={styles["albums-container"]}>
+        <BoxGridContainer>
+          {typeof albums === "object"
+            ? albums?.map((album) => (
+                <AlbumCard
+                  title={album.name}
+                  imageSources={album.coverArt.sources}
+                  key={album.id}
+                  id={album.id}
+                />
+              ))
+            : albums}
+        </BoxGridContainer>
+      </section>
     </>
   );
 };

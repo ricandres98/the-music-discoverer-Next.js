@@ -5,13 +5,13 @@ import useApiInstance from "hooks/useApiInstance";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styles from 'styles/ArtistPage.module.scss';
+import styles from "styles/ArtistPage.module.scss";
 import AlbumCard from "components/AlbumCard";
 
 const artistPage = () => {
   const router = useRouter();
-  const [ artist, setArtist ] = useState(undefined);
-  const [ albums, setAlbums ] = useState([]);
+  const [artist, setArtist] = useState(undefined);
+  const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
     const id = router.query.artist;
@@ -38,17 +38,22 @@ const artistPage = () => {
           params: {
             id: id,
             limit: 10,
-          }
+          },
         });
         console.log("data2: ", data);
-        console.log(data.data.artist.discography.albums.items.map(item => item.releases.items[0]));
+        console.log(
+          data.data.artist.discography.albums.items.map(
+            (item) => item.releases.items[0]
+          )
+        );
 
-        const cleanData = data.data.artist.discography.albums.items.map(item => item.releases.items[0]);
-        if (cleanData.length === 0) setAlbums('No data could be found')
+        const cleanData = data.data.artist.discography.albums.items.map(
+          (item) => item.releases.items[0]
+        );
+        if (cleanData.length === 0) setAlbums("No data could be found");
         else setAlbums(cleanData);
-        
-      } catch(err) {
-        setAlbums('No data could be found');
+      } catch (err) {
+        setAlbums("No data could be found");
         // throw(new Error(err));
       }
     };
@@ -63,13 +68,15 @@ const artistPage = () => {
   const seeMoreAlbums = () => {
     const id = router.query.artist;
     router.push(`/artist/albums/${id}`);
-  }
+  };
 
   return (
     <>
       <Header page="back-button" />
       <Head>
-        <title>{`${artist ? artist.name : "Artist"} - The music Discoverer`}</title>
+        <title>{`${
+          artist ? artist.name : "Artist"
+        } - The music Discoverer`}</title>
       </Head>
       <section className={styles.artist}>
         <div className={styles["artist__profile"]}>
@@ -87,7 +94,7 @@ const artistPage = () => {
           <div className={styles["artist-data"]}>
             <h1 className={styles["artist-name"]}>{artist?.name}</h1>
             <ul className={styles["artist-genres"]}>
-              {artist?.genres.map(genre => (
+              {artist?.genres.map((genre) => (
                 <li key={`gender-${genre}`}>{genre}</li>
               ))}
             </ul>
@@ -98,8 +105,8 @@ const artistPage = () => {
             className={`${styles["artist__albums__title"]} ${styles["artist-section-title"]}`}
           >
             <h2>Albums</h2>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className={styles["see-more-button"]}
               onClick={seeMoreAlbums}
             >

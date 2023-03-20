@@ -6,7 +6,7 @@ import Head from "next/head";
 import useApiInstance from "hooks/useApiInstance";
 import Image from "next/image";
 import TrackContainer from "containers/TrackContainer";
-import corchea from 'assets/icons/corchea.svg';
+import corchea from "assets/icons/corchea.svg";
 import styles from "styles/Album.module.scss";
 
 const albumView = (props) => {
@@ -51,11 +51,7 @@ const albumView = (props) => {
             }
           >
             <Image
-              src={
-                album?.images
-                  ? album?.images[0]?.url
-                  : corchea
-                }
+              src={album?.images ? album?.images[0]?.url : corchea}
               alt={album?.name}
               width={200}
               height={200}

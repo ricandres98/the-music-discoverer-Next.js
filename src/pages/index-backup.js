@@ -1,9 +1,9 @@
-import Header from 'containers/Header';
-import Head from 'next/head';
-import Image from 'next/image';
-import backgroundNotes from 'assets/background-notes.svg';
-import styles from 'styles/Home.module.scss';
-import Link from 'next/link';
+import Header from "containers/Header";
+import Head from "next/head";
+import Image from "next/image";
+import backgroundNotes from "assets/background-notes.svg";
+import styles from "styles/Home.module.scss";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Head>
         <title>The music discoverer</title>
       </Head>
-      <Header page="home"/>
+      <Header page="home" />
       <section className={styles.main}>
         <div className={styles["main__text"]}>
           <p>

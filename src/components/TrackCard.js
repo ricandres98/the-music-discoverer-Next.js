@@ -18,10 +18,7 @@ const TrackCard = (props) => {
     <div className={styles["track-item"]} onClick={handleClick}>
       <div className={styles["track-image"]}>
         <Image
-          src={
-            props.imageSources.sort((a, b) => b.width - a.width)[2]
-              .url
-          }
+          src={props.imageSources.sort((a, b) => b.width - a.width)[2].url}
           alt={props.title}
           width={imageSize}
           height={imageSize}
