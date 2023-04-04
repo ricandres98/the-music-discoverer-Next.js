@@ -64,7 +64,6 @@ export default function Home() {
                     width={200}
                     height={200}
                     alt="artist-image"
-                    placeholder="blur"
                   />
                 </div>
               ))}

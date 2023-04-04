@@ -5,9 +5,21 @@ import Link from "next/link";
 const AlbumCard = (props) => {
   const imageSize = 100;
 
-  // const handleClick = () => {
-  //   router.push(`/album/${props.id}`);
-  // };
+  const handleImageError = (e, name) => {
+    let initials = "";
+    if (name.includes(" ")) {
+      initials = name
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .toUpperCase();
+    } else {
+      initials = name.split("")[0].toUpperCase();
+    }
+
+    const placeholderImageURL = `https://via.placeholder.com/300x300/53a3a6/CFFFE0.jpg?text=${initials}`;
+    e.target.src = placeholderImageURL;
+  };
 
   return (
     <Link
@@ -25,6 +37,7 @@ const AlbumCard = (props) => {
           alt={props.title}
           width={imageSize}
           height={imageSize}
+          onError={(e) => handleImageError(e, props.name)}
         />
       </div>
       <span className={styles["album-title"]}>{props.title}</span>
