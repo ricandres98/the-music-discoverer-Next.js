@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const useApiInstance = () => {
+const apiInstance = () => {
   const api = axios.create({
     baseURL: "https://spotify23.p.rapidapi.com/",
     headers: {
@@ -12,4 +12,4 @@ const useApiInstance = () => {
   return api;
 };
 
-export default useApiInstance;
+export default apiInstance;

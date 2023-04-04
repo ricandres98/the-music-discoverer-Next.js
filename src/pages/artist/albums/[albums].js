@@ -1,18 +1,18 @@
 import Header from "containers/Header";
-import useApiInstance from "hooks/useApiInstance";
+import apiInstance from "utils/apiInstance";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BoxGridContainer from "containers/BoxGridContainer";
 import AlbumCard from "components/AlbumCard";
 import styles from "styles/AlbumsPage.module.scss";
 
-const albumsPage = () => {
+const AlbumsPage = () => {
   const router = useRouter();
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
     const id = router.query.albums;
-    const api = useApiInstance();
+    const api = apiInstance();
 
     const getAlbumsFromArtist = async () => {
       try {
@@ -43,7 +43,7 @@ const albumsPage = () => {
     if (router && router.query.albums) {
       getAlbumsFromArtist();
     }
-  });
+  }, [router.isReady]);
 
   return (
     <>
@@ -66,4 +66,4 @@ const albumsPage = () => {
   );
 };
 
-export default albumsPage;
+export default AlbumsPage;

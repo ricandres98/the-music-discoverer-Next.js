@@ -10,11 +10,14 @@ const NextTrackButton = (props) => {
   const router = useRouter();
 
   const handleClick = () => {
+    // props.setSuperPlaying(false);
     const currentPlaylist = state.shuffle
       ? state.randomPlaylist
       : state.playlist;
     if (currentPlaylist) {
-      const [, hash] = router.asPath?.split("#");
+      const [, hash] = router.asPath
+        ? router.asPath.split("#")
+        : [undefined, undefined];
       const index = currentPlaylist.findIndex(
         (track) => track.id === currentTrack.id
       );

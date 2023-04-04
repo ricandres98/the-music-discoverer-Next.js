@@ -7,6 +7,8 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    color: unset;
+    text-decoration: none;
 
     .artist-avatar {
         width: $album-size;

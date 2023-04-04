@@ -1,9 +1,7 @@
 import Header from "containers/Header";
 import Head from "next/head";
 import Image from "next/image";
-import backgroundNotes from "assets/background-notes.svg";
 import styles from "styles/Home.module.scss";
-import Link from "next/link";
 import img1 from "assets/images/drake-04g-344x344.jpg";
 import img2 from "assets/images/harry-styles-6jk-artistchart-rcm-344x344.jpg";
 import img3 from "assets/images/luke-combs-9dm-artist-chart-501-344x344.jpg";
@@ -31,12 +29,14 @@ export default function Home() {
           <div className={styles["slider-container"]}>
             <div className={styles.slider}>
               {doubleImages1.map((image, index) => (
-                <div className={styles["image-container"]}>
+                <div
+                  key={`left-moving-img-${index}`}
+                  className={styles["image-container"]}
+                >
                   <Image
                     src={image}
                     width={200}
                     height={200}
-                    key={`left-moving-img-${index}`}
                     alt="artist-image"
                     placeholder="blur"
                   />
@@ -46,7 +46,7 @@ export default function Home() {
           </div>
           <div className={styles["text-in-between"]}>
             <h1>
-              Life is not as good without music. Let's live a <b>better</b>{" "}
+              Life is not as good without music. Let&apos;s live a <b>better</b>{" "}
               life!
             </h1>
           </div>
@@ -55,12 +55,14 @@ export default function Home() {
           >
             <div className={styles.slider}>
               {doubleImages2.map((image, index) => (
-                <div className={styles["image-container"]}>
+                <div
+                  key={`right-moving-img-${index}`}
+                  className={styles["image-container"]}
+                >
                   <Image
                     src={image}
                     width={200}
                     height={200}
-                    key={`right-moving-img-${index}`}
                     alt="artist-image"
                     placeholder="blur"
                   />

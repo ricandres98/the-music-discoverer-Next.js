@@ -37,8 +37,8 @@
         margin: 0 auto;
         $box-height: 35px;
         $button-width: 45px;
-        transform: translateY(-150px);
-        animation: form .7s forwards 0.5s cubic-bezier(.38,.01,.62,1.55);
+        // transform: translateY(-150px);
+        // animation: form .7s forwards 0.5s cubic-bezier(.38,.01,.62,1.55);
 
         input {
             width: calc(100% - #{$button-width});

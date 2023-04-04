@@ -3,22 +3,22 @@ import { useRouter } from "next/router";
 import TrackCard from "components/TrackCard";
 import Header from "containers/Header";
 import Head from "next/head";
-import useApiInstance from "hooks/useApiInstance";
+import useApiInstance from "utils/apiInstance";
 import Image from "next/image";
 import TrackContainer from "containers/TrackContainer";
 import corchea from "assets/icons/corchea.svg";
 import styles from "styles/Album.module.scss";
 
-const albumView = (props) => {
+const AlbumView = () => {
   const [album, setAlbum] = useState();
   const [tracks, setTracks] = useState([]);
   const router = useRouter();
+  const api = useApiInstance();
 
   useEffect(() => {
     const id = router.query.album;
 
     async function callApi() {
-      const api = useApiInstance();
       const { data } = await api("albums/", {
         params: {
           ids: id,
@@ -31,7 +31,6 @@ const albumView = (props) => {
 
     if (router && router.query.album) {
       callApi();
-      console.log(album, tracks);
     }
   }, [router]);
 
@@ -85,4 +84,4 @@ const albumView = (props) => {
   );
 };
 
-export default albumView;
+export default AlbumView;

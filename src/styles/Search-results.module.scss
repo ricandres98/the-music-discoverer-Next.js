@@ -9,6 +9,17 @@
     }
 }
 
+.search-results-error {
+    display: grid;
+    place-items: center;
+    min-height: 50vh;
+
+    p {
+        font-size: 2rem;
+        font-family: $font-titles;
+    }
+}
+
 .tracks-list {
     @include track-list();
 }

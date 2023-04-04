@@ -1,21 +1,21 @@
 import BoxGridContainer from "containers/BoxGridContainer";
 import Header from "containers/Header";
 import Image from "next/image";
-import useApiInstance from "hooks/useApiInstance";
+import apiInstance from "utils/apiInstance";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "styles/ArtistPage.module.scss";
 import AlbumCard from "components/AlbumCard";
 
-const artistPage = () => {
+const ArtistPage = () => {
   const router = useRouter();
   const [artist, setArtist] = useState(undefined);
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
     const id = router.query.artist;
-    const api = useApiInstance();
+    const api = apiInstance();
 
     const getArtistData = async () => {
       try {
@@ -24,8 +24,6 @@ const artistPage = () => {
             ids: id,
           },
         });
-        console.log(data);
-        console.log(data.artists[0]);
         setArtist(data.artists[0]);
       } catch (err) {
         console.error(err);
@@ -40,12 +38,6 @@ const artistPage = () => {
             limit: 10,
           },
         });
-        console.log("data2: ", data);
-        console.log(
-          data.data.artist.discography.albums.items.map(
-            (item) => item.releases.items[0]
-          )
-        );
 
         const cleanData = data.data.artist.discography.albums.items.map(
           (item) => item.releases.items[0]
@@ -61,7 +53,6 @@ const artistPage = () => {
     if (router && router.query.artist) {
       getArtistData();
       getAlbumsFromArtist();
-      console.log(artist);
     }
   }, [router]);
 
@@ -131,4 +122,4 @@ const artistPage = () => {
   );
 };
 
-export default artistPage;
+export default ArtistPage;

@@ -6,7 +6,7 @@ const formatter = (number) => {
   }
 };
 
-const useFormatTime = (time) => {
+const formatTime = (time) => {
   if (time / 60 >= 1) {
     const minutes = Math.floor(time / 60);
     const timeLeft = time / 60 - minutes;
@@ -19,4 +19,4 @@ const useFormatTime = (time) => {
   }
 };
 
-export default useFormatTime;
+export default formatTime;

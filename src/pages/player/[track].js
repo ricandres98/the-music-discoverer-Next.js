@@ -3,7 +3,7 @@ import Image from "next/image";
 import Header from "containers/Header";
 import { useState, useEffect, useContext, useRef } from "react";
 import { useRouter } from "next/router";
-import useApiInstance from "hooks/useApiInstance";
+import apiInstance from "utils/apiInstance";
 import PlayButton from "components/PlayButton";
 import PreviousTrackButton from "components/PreviousTrackButton";
 import LoopButton from "components/LoopButton";
@@ -14,9 +14,9 @@ import ProgressBar from "components/ProgressBar";
 import styles from "styles/Player.module.scss";
 
 const Player = () => {
-  const { state, setPlaylist } = useContext(AppContext);
+  const { setPlaylist } = useContext(AppContext);
 
-  const [superPlaying, setSuperPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [track, setTrack] = useState({
     images: corchea,
   });
@@ -27,14 +27,16 @@ const Player = () => {
     const id = router.query.track;
 
     const getPlaylist = () => {
-      const [_, hash] = router.asPath?.split("#");
+      const [, hash] = router.asPath
+        ? router.asPath.split("#")
+        : [undefined, undefined];
       const [from, value] = hash ? hash.split("=") : "";
-      // console.log({ from, value });
       let playlist = [];
+
       (async () => {
         try {
           const query = value;
-          const api = useApiInstance();
+          const api = apiInstance();
           switch (from) {
             case "search": {
               const { data } = await api("search/", {
@@ -49,9 +51,10 @@ const Player = () => {
             }
 
             case "album": {
+              const albumId = value;
               const { data } = await api("albums/", {
                 params: {
-                  ids: id,
+                  ids: albumId,
                 },
               });
               playlist = data.albums[0].tracks.items;
@@ -67,7 +70,7 @@ const Player = () => {
 
     async function callApi() {
       try {
-        const api = useApiInstance();
+        const api = apiInstance();
         const { data } = await api("tracks/", {
           params: {
             ids: id,
@@ -82,14 +85,15 @@ const Player = () => {
     if (router && router.query.track) {
       getPlaylist();
       callApi();
-      audioElement.current.play();
-      audioElement.current.paused
-        ? setSuperPlaying(false)
-        : setSuperPlaying(true);
+      if (audioElement.current.readyState === 4) {
+        audioElement.current.play();
+        // PRUEBA ELIMINAR LA LINEA SUPERIOR
+        audioElement.current.autoplay = true;
+      }
+      setPlaying(!audioElement.current.paused);
+      console.log({ audio: audioElement.current });
     }
-  }, [router]);
-
-  // if (audioElement.current?.src && audioElement.current.paused) audioElement.current.play();
+  }, [router, router.query.track]);
 
   return (
     <>
@@ -120,18 +124,15 @@ const Player = () => {
               ? track.artists.map((artist) => artist.name).join(", ")
               : "..."}
           </h4>
-          <ProgressBar
-            audio={audioElement.current}
-            superPlaying={superPlaying}
-          />
+          <ProgressBar audio={audioElement.current} playing={playing} />
         </div>
         <div className={styles["player__buttons-panel"]}>
           <LoopButton audio={audioElement.current} />
           <PreviousTrackButton track={track} />
           <PlayButton
             audio={audioElement.current}
-            setSuperPlaying={setSuperPlaying}
-            superPlaying={superPlaying}
+            setPlaying={setPlaying}
+            playing={playing}
           />
           <NextTrackButton track={track} />
           <ShuffleButton />

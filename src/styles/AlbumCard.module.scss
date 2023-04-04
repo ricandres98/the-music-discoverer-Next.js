@@ -4,6 +4,8 @@
 .album-item {
     width: $album-size;
     cursor: pointer;
+    text-decoration: none;
+    color: unset;
 
     .album-cover {
         width: $album-size;

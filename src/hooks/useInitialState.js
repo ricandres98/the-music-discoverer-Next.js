@@ -1,4 +1,3 @@
-import corchea from "assets/icons/corchea.svg";
 import { useState } from "react";
 const initialState = {
   track: {},

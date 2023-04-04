@@ -15,7 +15,9 @@ const PreviousTrackButton = (props) => {
       : state.playlist;
 
     if (currentPlaylist.length) {
-      const [_, hash] = router.asPath?.split("#");
+      const [, hash] = router.asPath
+        ? router.asPath.split("#")
+        : [undefined, undefined];
       const index = currentPlaylist.findIndex(
         (track) => track.id === currentTrack.id
       );

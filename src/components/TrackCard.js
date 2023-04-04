@@ -1,21 +1,31 @@
-import styles from "styles/TrackCard.module.scss";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useContext } from "react";
 import AppContext from "context/AppContext";
+import Link from "next/link";
+import styles from "styles/TrackCard.module.scss";
 
 const TrackCard = (props) => {
   const imageSize = 100;
-  const router = useRouter();
-  const { state, setPlaylist } = useContext(AppContext);
+  const { setPlaylist } = useContext(AppContext);
 
   const handleClick = () => {
-    router.push(`/player/${props.id}#${props.from[0]}=${props.from[1]}`);
+    // router.push(`/player/${props.id}#${props.from[0]}=${props.from[1]}`);
     setPlaylist(props.list);
+  };
+  const handleKey = (e) => {
+    // router.push(`/player/${props.id}#${props.from[0]}=${props.from[1]}`);
+    if (e.target === "Enter") {
+      setPlaylist(props.list);
+    }
   };
 
   return (
-    <div className={styles["track-item"]} onClick={handleClick}>
+    <Link
+      href={`/player/${props.id}#${props.from[0]}=${props.from[1]}`}
+      className={styles["track-item"]}
+      onClick={handleClick}
+      onKeyDown={(e) => handleKey(e)}
+    >
       <div className={styles["track-image"]}>
         <Image
           src={props.imageSources.sort((a, b) => b.width - a.width)[2].url}
@@ -30,7 +40,7 @@ const TrackCard = (props) => {
           {props.artists?.map((artist) => artist.profile.name).join(", ")}
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 
