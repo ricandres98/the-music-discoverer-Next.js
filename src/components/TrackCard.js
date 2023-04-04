@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useContext } from "react";
 import AppContext from "context/AppContext";
 import Link from "next/link";
 import styles from "styles/TrackCard.module.scss";
+import { MyImage } from "./MyImage";
 
 const TrackCard = (props) => {
   const imageSize = 100;
@@ -18,22 +18,22 @@ const TrackCard = (props) => {
       setPlaylist(props.list);
     }
   };
-  const handleImageError = (e, name) => {
-    let initials = "";
-    if (name.includes(" ")) {
-      initials = name
-        .split(" ")
-        .map((word) => word[0])
-        .join("")
-        .toUpperCase();
-    } else {
-      initials = name.split("")[0].toUpperCase();
-    }
+  // const handleImageError = (e, name) => {
+  //   let initials = "";
+  //   if (name.includes(" ")) {
+  //     initials = name
+  //       .split(" ")
+  //       .map((word) => word[0])
+  //       .join("")
+  //       .toUpperCase();
+  //   } else {
+  //     initials = name.split("")[0].toUpperCase();
+  //   }
 
-    const placeholderImageURL = `https://via.placeholder.com/300x300/53a3a6/cfffe0?text=${initials}`;
-    e.target.src = placeholderImageURL;
-    console.log(e.target.src);
-  };
+  //   const placeholderImageURL = `https://via.placeholder.com/300x300/53a3a6/cfffe0?text=${initials}`;
+  //   e.target.src = placeholderImageURL;
+  //   console.log(e.target.src);
+  // };
 
   return (
     <Link
@@ -43,12 +43,12 @@ const TrackCard = (props) => {
       onKeyDown={(e) => handleKey(e)}
     >
       <div className={styles["track-image"]}>
-        <Image
+        <MyImage
           src={props.imageSources.sort((a, b) => b.width - a.width)[2].url}
           alt={props.title}
           width={imageSize}
           height={imageSize}
-          onError={(e) => handleImageError(e)}
+          // onError={(e) => handleImageError(e)}
         />
       </div>
       <div className={styles["track-info"]}>
