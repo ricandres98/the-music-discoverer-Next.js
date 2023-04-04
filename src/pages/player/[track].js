@@ -35,7 +35,7 @@ const Player = () => {
 
       (async () => {
         try {
-          const query = value;
+          const query = decodeURI(value);
           const api = apiInstance();
           switch (from) {
             case "search": {
