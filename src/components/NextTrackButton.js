@@ -5,15 +5,13 @@ import AppContext from "context/AppContext";
 import { useRouter } from "next/router";
 
 const NextTrackButton = (props) => {
-  const { state } = useContext(AppContext);
+  const { state, shuffle } = useContext(AppContext);
   const currentTrack = props.track;
   const router = useRouter();
 
   const handleClick = () => {
     // props.setSuperPlaying(false);
-    const currentPlaylist = state.shuffle
-      ? state.randomPlaylist
-      : state.playlist;
+    const currentPlaylist = shuffle ? state.randomPlaylist : state.playlist;
     if (currentPlaylist) {
       const [, hash] = router.asPath
         ? router.asPath.split("#")

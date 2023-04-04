@@ -8,6 +8,7 @@ const initialState = {
 
 const useInitialState = () => {
   const [state, setState] = useState(initialState);
+  const [shuffle, setShuffle] = useState(false);
 
   const setTrack = (newTrack) => {
     setState({
@@ -23,12 +24,12 @@ const useInitialState = () => {
     });
   };
 
-  const setShuffle = (boolean) => {
-    setState({
-      ...state,
-      shuffle: boolean,
-    });
-  };
+  // const setShuffle = (boolean) => {
+  //   setState({
+  //     ...state,
+  //     shuffle: boolean,
+  //   });
+  // };
 
   return {
     state,
@@ -36,6 +37,7 @@ const useInitialState = () => {
     setTrack,
     setPlaylist,
     setShuffle,
+    shuffle,
   };
 };
 

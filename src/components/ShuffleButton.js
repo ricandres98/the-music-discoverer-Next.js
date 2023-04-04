@@ -5,28 +5,30 @@ import styles from "styles/Player.module.scss";
 import AppContext from "context/AppContext";
 
 const ShuffleButton = () => {
-  const { state, setShuffle, setState } = useContext(AppContext);
+  const { state, setShuffle, shuffle, setState } = useContext(AppContext);
 
   const handleClick = () => {
-    setShuffle(!state.shuffle);
+    setShuffle((prev) => !prev);
   };
 
   useEffect(() => {
-    if (state.shuffle) {
+    if (shuffle) {
       const list = [...state.playlist];
       list.sort(() => Math.random() - 0.5);
-      setState({
-        ...state,
-        randomPlaylist: list,
+      setState((prev) => {
+        return {
+          ...prev,
+          randomPlaylist: list,
+        };
       });
     }
-  }, [state, setState]);
+  }, [shuffle]);
 
   return (
     <button
       type="button"
       onClick={handleClick}
-      className={state.shuffle ? styles["loop-on"] : ""}
+      className={shuffle ? styles["loop-on"] : ""}
     >
       <Image src={shuffleIcon} alt="Shuffle" />
     </button>

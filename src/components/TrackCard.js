@@ -30,8 +30,9 @@ const TrackCard = (props) => {
       initials = name.split("")[0].toUpperCase();
     }
 
-    const placeholderImageURL = `https://via.placeholder.com/300x300/53a3a6/CFFFE0.jpg?text=${initials}`;
+    const placeholderImageURL = `https://via.placeholder.com/300x300/53a3a6/cfffe0?text=${initials}`;
     e.target.src = placeholderImageURL;
+    console.log(e.target.src);
   };
 
   return (
